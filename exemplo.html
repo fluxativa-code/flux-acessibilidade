@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste — Flux Acessibilidade</title>
+<style>
+body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 20px;color:#222;line-height:1.6}
+h1{font-size:30px}h2{font-size:22px;margin-top:30px}
+a{color:#0b5394}
+.card{border:1px solid #ccc;border-radius:8px;padding:16px;background:#f7f7f7}
+button{padding:8px 14px}
+</style>
+</head>
+<body>
+<main>
+	<h1>Pró-reitoria de Graduação</h1>
+	<p>Esta é uma página de teste para conferir o botão de acessibilidade. Experimente aumentar o texto, ligar o alto contraste, destacar links e usar a régua de leitura.</p>
+	<h2>Inscrições abertas</h2>
+	<p>Faça sua inscrição até o dia 30. Consulte o <a href="#edital">edital completo</a> e acompanhe as datas no <a href="#calendario">calendário acadêmico</a>.</p>
+	<div class="card">
+		<h2 style="margin-top:0">Fale com a secretaria</h2>
+		<p>Dúvidas? Use o <a href="#contato">formulário de contato</a> ou ligue em horário comercial.</p>
+		<button type="button">Enviar mensagem</button>
+	</div>
+</main>
+
+<!-- Linha de instalação: é só isso. Troque o endereço pelo local onde o arquivo ficará hospedado. -->
+<script src="flux-a11y.min.js"
+        data-cor="#0b5394" data-tema="claro"
+        data-posicao="direita" data-vertical="baixo" data-tamanho="52"
+        data-recursos="fonte,contraste,inverter,cinza,links,titulos,legivel,espacamento,cursor,animacoes,regua,voz,libras"
+        defer></script>
+</body>
+</html>
