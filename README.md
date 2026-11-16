@@ -1,4 +1,4 @@
-# Flux Acessibilidade — versão universal (1.5.0)
+# Flux Acessibilidade — versão universal (1.5.1)
 
 Botão de acessibilidade para **qualquer site ou sistema web**: um único arquivo JavaScript, **sem PHP, sem servidor, sem dependências, sem cookies e sem enviar dados**.
 
@@ -11,7 +11,7 @@ Feito por **Aislan Renedy** (https://fluxativa.com.br/) e **IA Claude** (Anthrop
 Cole antes do `</body>` do layout comum do sistema:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.0/flux-a11y.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.1/flux-a11y.min.js" defer></script>
 ```
 
 Só essa linha já entrega:
@@ -23,7 +23,7 @@ Só essa linha já entrega:
 Para mudar alguma coisa, acrescente só o que for diferente:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.0/flux-a11y.min.js"
+<script src="https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.1/flux-a11y.min.js"
         data-cor="#0b5394" data-esconder="/painel, /login" defer></script>
 ```
 
@@ -110,8 +110,10 @@ O botão ajuda o visitante a adaptar a página, mas **não torna um site conform
 ## Publicar uma versão nova (GitHub + jsDelivr)
 
 1. No repositório `fluxativa-code/flux-acessibilidade`, envie os arquivos desta pasta (Add file → Upload files → Commit).
-2. Em **Releases → Draft a new release**, crie a tag **`1.5.0`** ("+ Create new tag … on publish") e publique.
-3. Em alguns minutos, o endereço `https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.0/flux-a11y.min.js` passa a funcionar. Sem a tag, o jsDelivr responde "Couldn't find the requested file".
+2. Em **Releases → Draft a new release**, crie a tag **`1.5.1`** ("+ Create new tag … on publish") e publique.
+   - **Atenção:** crie uma **tag**, nunca um *branch* com o nome da versão. Se existir um branch e uma tag com o mesmo nome, o jsDelivr pode pegar o branch errado e guardar essa escolha por vários dias.
+   - **Nunca reaproveite um número de versão:** se algo der errado, publique o próximo (1.5.2, 1.5.3…).
+3. Em alguns minutos, o endereço `https://cdn.jsdelivr.net/gh/fluxativa-code/flux-acessibilidade@1.5.1/flux-a11y.min.js` passa a funcionar. Sem a tag, o jsDelivr responde "Couldn't find the requested file".
 
 ---
 

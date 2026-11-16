@@ -1,5 +1,5 @@
 /*!
- * Flux Acessibilidade 1.5.0
+ * Flux Acessibilidade 1.5.1
  * Widget leve de acessibilidade, sem dependências.
  * Feito por Aislan Renedy (https://fluxativa.com.br/) e IA Claude (Anthropic).
  * Licença: GPL-2.0-or-later
@@ -26,7 +26,7 @@
 	'use strict';
 	if (w.FluxA11y) { return; }
 
-	var VERSION = '1.5.0';
+	var VERSION = '1.5.1';
 	var STORE = 'fxa_prefs_v1';
 	var ALL = ['perfis', 'fonte', 'contraste', 'inverter', 'cinza', 'daltonismo', 'links', 'titulos', 'legivel', 'espacamento', 'cursor', 'animacoes', 'regua', 'mascara', 'imagens', 'sons', 'voz', 'libras'];
 	var DEF = {
