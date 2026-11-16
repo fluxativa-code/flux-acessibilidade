@@ -1,3 +1,5 @@
+/* Autoteste do Flux Acessibilidade — cole no Console (F12) da página com o botão.
+ * Feito por Aislan Renedy (https://fluxativa.com.br/) e IA Claude (Anthropic). GPL-2.0-or-later */
 (async () => {
   const H = document.querySelector('.fxa-host');
   if (!H || !window.FluxA11y) { console.log('Flux Acessibilidade não encontrado nesta página. Limpe o cache e recarregue.'); return; }
@@ -17,13 +19,30 @@
   key('A', 'KeyA'); await w(200); ok('Alt+Shift+A fecha o painel', R.querySelector('.p').hidden);
 
   const p = [...document.querySelectorAll('main p, article p, p')].find((e) => e.offsetParent && e.textContent.trim().length > 20);
-  if (p && R.querySelector('.sb')) {
+  const fb = R.querySelector('.o[data-k="fonte"]');
+  if (p && fb) {
     const a = parseFloat(getComputedStyle(p).fontSize);
-    R.querySelector('.sb[data-s="1"]').click(); await w(300);
-    ok('A+ aumenta o texto', parseFloat(getComputedStyle(p).fontSize) > a);
-    R.querySelector('.sb[data-s="-1"]').click(); await w(300);
-    ok('A− volta ao normal', Math.abs(parseFloat(getComputedStyle(p).fontSize) - a) < 0.5);
+    fb.click(); await w(300);
+    ok('Tamanho do texto: nível 1 aumenta o texto', parseFloat(getComputedStyle(p).fontSize) > a);
+    ok('Tamanho do texto: leitor de tela ouve o nível', /110%, nível 1 de 3/.test(fb.getAttribute('aria-label') || ''));
+    fb.click(); fb.click(); fb.click(); await w(300);
+    ok('Tamanho do texto: 4º clique volta ao normal', Math.abs(parseFloat(getComputedStyle(p).fontSize) - a) < 0.5);
   } else { out.push({ teste: 'Tamanho do texto', resultado: 'pulado (desligado ou sem parágrafo)' }); }
+
+  const dt = R.querySelector('.o[data-k="daltonismo"]');
+  if (dt) {
+    dt.click(); await w(300);
+    ok('Daltonismo: liga (filtro de correção)', !R.querySelector('.fx').hidden && /fxa-dalt-1/.test(R.querySelector('.fx').style.backdropFilter || R.querySelector('.fx').style.webkitBackdropFilter || ''));
+    dt.click(); dt.click(); dt.click(); await w(300);
+    ok('Daltonismo: 4º clique desliga', R.querySelector('.fx').hidden);
+  }
+  const pf = R.querySelector('.pf[data-p="dislexia"]');
+  if (pf) {
+    pf.click(); await w(300);
+    ok('Perfil Dislexia liga fonte legível + espaçamento', h.classList.contains('fxa-legivel') && h.classList.contains('fxa-espaco'));
+    pf.click(); await w(300);
+    ok('Perfil Dislexia desliga', !h.classList.contains('fxa-legivel'));
+  }
 
   const checks = {
     contraste: () => h.classList.contains('fxa-hc'),
@@ -35,11 +54,12 @@
     espacamento: () => h.classList.contains('fxa-espaco'),
     cursor: () => h.classList.contains('fxa-cursor'),
     animacoes: () => h.classList.contains('fxa-pausa'),
-    regua: () => !R.querySelector('.rt').hidden,
+    regua: () => !R.querySelector('.rg').hidden,
+    imagens: () => h.classList.contains('fxa-semimg'),
   };
   for (const k in checks) {
     const b = R.querySelector('.o[data-k="' + k + '"]');
-    if (!b) { out.push({ teste: k, resultado: 'desligado no admin' }); continue; }
+    if (!b) { out.push({ teste: k, resultado: 'desligado na configuração' }); continue; }
     b.click(); await w(300);
     const liga = checks[k](), d = dock.getBoundingClientRect();
     ok(k + ': liga', liga);
@@ -69,7 +89,7 @@
     ok('Libras: botão próprio do VLibras escondido', !wr || getComputedStyle(wr).display === 'none');
     lib.click(); await w(1200);
     ok('Libras: fecha e o nosso botão volta', dock.style.display !== 'none');
-  } else { out.push({ teste: 'Libras', resultado: 'desligado no admin' }); }
+  } else { out.push({ teste: 'Libras', resultado: 'desligado na configuração' }); }
 
   FluxA11y.reset();
   console.table(out);
